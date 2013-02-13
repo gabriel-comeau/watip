@@ -61,7 +61,7 @@
 				case 403:
 					header("HTTP/1.0 403 Forbidden", 403);	
 					break;
-			  default:
+			  	default:
 					header("HTTP/1.0 Internal Server Error", 500);
 			}
 		}
