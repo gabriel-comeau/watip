@@ -7,10 +7,10 @@
 	if (isset($_POST['password']) && inPasswordList($_POST['password'], $validHashes)) {
 		// Did a proxy request this for someone?  That'd kind of ruin things
 		$clientIp = "";
-		if (isset($_SERVER['X-FORWARDED-FOR'])) {
+		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
 			// X-FORWARDED-FOR gives a comma+space delimited list of IPs, client
 			// first and then the succession of proxies after
-			$xffParts = explode(", ", $_SERVER['X-FORWARDED-FOR']);
+			$xffParts = explode(", ", $_SERVER['HTTP_X_FORWARDED_FOR']);
 			$clientIp = $xffParts[0];
 		} else {
 			$clientIp = $_SERVER['REMOTE_ADDR'];
