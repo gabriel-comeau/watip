@@ -29,12 +29,12 @@
 			echo $clientIp;
 		} else {
 			// Uh we don't have an IP
-			http_response_code(500);
+			errorOut(500);
 		}
 
 	} else {
 		// No password match
-		http_response_code(403);
+		errorOut(403);
 	}
 
 	/**
@@ -50,4 +50,19 @@
 		return false;
 	}
 
-
+	/**
+	 * Need this function because http_response_code() is too new!
+	 */
+	function errorOut($errorCode) {
+		if (function_exists("http_response_code")) {
+			http_response_code($errorCode);
+		} else {
+			switch($errorCode) {
+				case 403:
+					header("HTTP/1.0 403 Forbidden", 403);	
+					break;
+			  default:
+					header("HTTP/1.0 Internal Server Error", 500);
+			}
+		}
+	}
