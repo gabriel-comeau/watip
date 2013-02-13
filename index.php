@@ -1,5 +1,14 @@
 <?php
 
+	/**
+	 * Determine client's IP address and return it to them
+	 *
+	 * Clients need a password in order to get their IP returned to them.
+	 * If they don't have one, they'll get a 403 instead.
+	 *
+	 * @author Gabriel Comeau
+	 */
+
 	// Put SHA1 hashes of the passwords you want to work in here
 	$validHashes = array('');
 
